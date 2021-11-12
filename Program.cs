@@ -1,4 +1,7 @@
-﻿using bartolini.liam._5h.scaffolding.Models;
+using System;
+using System.Text;
+using System.Linq;
+using bartolini.liam._5h.scaffolding.Models;
 
 StudentiClassi db = new();
 
@@ -41,3 +44,20 @@ db.Studentes.Add(
 );
 
 db.SaveChanges();
+
+var query = from studente in db.Studentes
+            where studente.Idstudente < 2
+            select studente;
+
+// just an example...
+Console.WriteLine(PrintStudent(query.First()));
+
+public static string PrintStudent(Studente student) {
+    StringBuilder sb = new();
+    sb.AppendLine($"ID : {studente.Idstudente}");
+    sb.AppendLine($"Nome : {studente.Nome}");
+    sb.AppendLine($"Cognome : {studente.Cognome}");
+    sb.AppendLine($"CF : {studente.CodiceFiscale}");
+    sb.AppendLine($"Classe : {studente.FkIdClasse}");
+    return sb.ToString();
+}
