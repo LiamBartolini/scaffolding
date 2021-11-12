@@ -27,6 +27,14 @@ db.SaveChanges();
 ```
 you persist changes onto db
 
+using:
+```c#
+var query = from studente in db.Studentes
+            where studente.Idstudente < 2
+            select studente;
+```
+you can make a query onto a specific table
+
 ---
 Credits:  
 @LiamBartolini
